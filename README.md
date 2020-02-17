@@ -1,1 +1,1 @@
-https://hub.docker.com/repository/docker/jocajunior77/laravel-curso
+https://hub.docker.com/r/jocajunior77/laravel-curso
