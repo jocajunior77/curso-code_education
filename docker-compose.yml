@@ -1,0 +1,49 @@
+version: "3"
+
+networks:
+  rede-privada:
+    external: false
+  rede-publica:
+    external: true
+services:
+  php:
+    build:
+      context: ./.docker/builds
+      dockerfile: Dockerfile-php
+    volumes:
+      - .:/var/www
+      - /etc/localtime:/etc/localtime
+    networks:
+      - rede-privada
+    depends_on:
+      - db57
+      - redis
+  nginx:
+    build:
+      dockerfile: ./.docker/builds/Dockerfile-nginx
+      context: .
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www
+      - /etc/localtime:/etc/localtime
+    networks:
+      - rede-publica
+      - rede-privada
+  db57:
+    image: mysql:5.7
+    volumes:
+      - ./.docker/mysql/data:/var/lib/mysql
+      - /etc/localtime:/etc/localtime
+    environment:
+      MYSQL_DATABASE: curso
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - rede-privada
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./.docker/redis/data:/data
+      - /etc/localtime:/etc/localtime
+    networks:
+      - rede-privada
