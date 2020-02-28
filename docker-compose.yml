@@ -24,6 +24,10 @@ services:
       context: .
     ports:
       - "8000:80"
+    entrypoint: dockerize -template ./.docker/templates/nginx-laravel.conf:/etc/nginx/conf.d/default.conf nginx -g 'daemon off;'
+    environment:
+      - FPM_SERVICE=php
+      - FPM_PORT=9000
     volumes:
       - .:/var/www
       - /etc/localtime:/etc/localtime
