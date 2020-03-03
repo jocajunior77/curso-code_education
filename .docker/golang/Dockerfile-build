@@ -1,9 +1,0 @@
-FROM golang:1.14-alpine
-
-WORKDIR /src/app
-COPY ./app/app.go .
-
-RUN go build app.go
-RUN chmod +x app
-
-CMD ["/src/app/app"]
