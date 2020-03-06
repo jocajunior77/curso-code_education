@@ -4,7 +4,6 @@ steps:
   name: 'gcr.io/$PROJECT_ID/docker-compose'
   args: ['-f','docker-compose.cloudbuild.yaml','up','-d']
 
-
-  - id: "Dockerc ps - Executando"
+- id: "Dockerc ps - Executando"
   name: 'gcr.io/cloud-builders/docker'
   args: ['ps']
