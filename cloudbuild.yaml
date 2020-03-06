@@ -7,3 +7,23 @@ steps:
 - id: "Dockerc ps - Executando"
   name: 'gcr.io/cloud-builders/docker'
   args: ['ps']
+
+- id: "Composer - Executando"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec','-t','php','composer','install']
+
+- id: "Copiando .env - Executando"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec','-t','php','cp','.env.production','.env']
+
+- id: "key:generante - Executando"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec','-t','php','php','/var/www/artinsan','key:generate']
+
+- id: "Migrations - Executando"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec','-t','php','php','/var/www/artinsan','migrate']
+
+- id: "PhpUnit - Executando"
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['exec','-t','php','php','/var/www/vendor/vendor/bin/phpunit','-c','/var/www/phpunit.xml']
