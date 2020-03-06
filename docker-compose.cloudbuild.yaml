@@ -3,8 +3,6 @@ version: "3"
 networks:
   rede-privada:
     external: false
-  rede-publica:
-    external: true
 services:
   php:
     build:
@@ -32,7 +30,6 @@ services:
       - .:/var/www
       - /etc/localtime:/etc/localtime
     networks:
-      - rede-publica
       - rede-privada
     depends_on:
       - php
