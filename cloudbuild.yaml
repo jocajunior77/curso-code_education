@@ -1,5 +1,5 @@
 steps:
 
 - id: "Dockercompose - OK"
-  name: 'grc.io/$PROJECT_ID/docker-compose'
+  name: 'gcr.io/projeto-code/docker-compose'
   args: ['-f', 'docker-compose.cloudbuild.yaml', 'up', '-d']
