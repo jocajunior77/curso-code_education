@@ -16,7 +16,7 @@ steps:
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec','-t','workspace_php_1','cp','.env.production','.env']
 
-- id: "key:generante - Executando"
+- id: "Key generate - Executando"
   name: 'gcr.io/cloud-builders/docker'
   args: ['exec','-t','workspace_php_1','php','/var/www/artinsan','key:generate']
 
