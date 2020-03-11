@@ -18,11 +18,11 @@ steps:
 
 - id: "Key generate - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','workspace_php_1','php','/var/www/artinsan','key:generate']
+  args: ['exec','-t','workspace_php_1','php','/var/www/artisan','key:generate']
 
 - id: "Migrations - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','workspace_php_1','php','/var/www/artinsan','migrate']
+  args: ['exec','-t','workspace_php_1','php','/var/www/artisan','migrate']
 
 - id: "PhpUnit - Executando"
   name: 'gcr.io/cloud-builders/docker'
