@@ -10,20 +10,20 @@ steps:
 
 - id: "Composer - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','php','composer','install']
+  args: ['exec','-t','workspace_php_1','composer','install']
 
 - id: "Copiando .env - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','php','cp','.env.production','.env']
+  args: ['exec','-t','workspace_php_1','cp','.env.production','.env']
 
 - id: "Key generate - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','php','php','/var/www/artinsan','key:generate']
+  args: ['exec','-t','workspace_php_1','php','/var/www/artinsan','key:generate']
 
 - id: "Migrations - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','php','php','/var/www/artinsan','migrate']
+  args: ['exec','-t','workspace_php_1','php','/var/www/artinsan','migrate']
 
 - id: "PhpUnit - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','php','php','/var/www/vendor/vendor/bin/phpunit','-c','/var/www/phpunit.xml']
+  args: ['exec','-t','workspace_php_1','php','/var/www/vendor/vendor/bin/phpunit','-c','/var/www/phpunit.xml']
