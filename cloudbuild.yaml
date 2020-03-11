@@ -14,7 +14,7 @@ steps:
 
 - id: "Copiando .env - Executando"
   name: 'gcr.io/cloud-builders/docker'
-  args: ['exec','-t','workspace_php_1','cp','.env.production','.env']
+  args: ['exec','-t','workspace_php_1','cp','.env-production','.env']
 
 - id: "Key generate - Executando"
   name: 'gcr.io/cloud-builders/docker'
