@@ -14,7 +14,7 @@ spec: # spec do deployment
     spec: # spec do POD
       containers:
         - image: img-app-deployment
-          command: ["/bin/bash","php artisan config:cache; php artisan migrate; php-fpm;"]
+          #command: ["/bin/bash","php artisan config:cache; php artisan migrate; php-fpm;"]
           name: app
           ports:
           - containerPort: 9000
