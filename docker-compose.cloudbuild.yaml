@@ -2,10 +2,10 @@ version: "3"
 
 networks:
   rede-privada:
-    external: false
+    driver: bridge
 
 services:
-  php:
+  app:
     build:
       context: ./.docker/builds
       dockerfile: Dockerfile-php
@@ -21,6 +21,9 @@ services:
     build:
       dockerfile: ./.docker/builds/Dockerfile-nginx
       context: .
+    container_name: nginx
+    restart: always
+    tty: true
     ports:
       - "8000:80"
     # entrypoint: dockerize -template ./.docker/templates/nginx-laravel.conf:/etc/nginx/conf.d/default.conf nginx -g 'daemon off;'
@@ -33,9 +36,13 @@ services:
     networks:
       - rede-privada
     depends_on:
-      - php
+      - app
   db57:
     image: mysql:5.7
+    command: --innodb-use-native-aio=0
+    container_name: db57
+    restart: always
+    tty: true
     volumes:
       - ./.docker/mysql/data:/var/lib/mysql
       - /etc/localtime:/etc/localtime

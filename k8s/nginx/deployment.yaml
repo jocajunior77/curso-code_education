@@ -15,6 +15,7 @@ spec: # spec do deployment
       containers:
         - image: nginx:1.16.0-alpine
           name: nginx
+          command: ["/bin/sh","-c","mkdir -p /var/www/public; touch /var/www/public/index.php; nginx -g 'daemon off;'"]
           ports:
             - containerPort: 80
           volumeMounts: #monta o volume efetivamente

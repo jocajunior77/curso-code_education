@@ -14,6 +14,7 @@ spec: # spec do deployment
     spec: # spec do POD
       containers:
         - image: img-app-deployment
+          command: ["/bin/bash","./k8s/entrypoint.sh; php-fpm;"]
           name: app
           ports:
           - containerPort: 9000
