@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec: # spec do deployment
+  replicas: 1
+  selector: # selector a ser ultilzado para criar o service
+    matchLabels:
+      app: nginx
+  template: # referece ao POD
+    metadata:
+      labels:
+        app: nginx
+    spec: # spec do POD
+      containers:
+        - image: nginx:1.16.0-alpine
+          name: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts: #monta o volume efetivamente
+          - name: nginx-conf
+            mountPath: /etc/nginx/conf.d
+            readOnly: true
+      volumes:
+      - name: nginx-conf
+        configMap:
+          name: nginx-conf
+          items:
+            - key: nginx-conf
+              path: default.conf
